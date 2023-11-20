@@ -51,15 +51,15 @@ int main() {
     for (int64_t i = 0; i < n; ++i) {
         result[check[i]].push_back(i);
     }
-    // for (int64_t i = 0; i < counter; ++i) {
-    //     sort(result[i].begin(), result[i].end());
-    // }
-    // sort(result.begin(), result.end());
-    // for (int64_t i = 0; i < result.size(); ++i) {
-    //     for (int j = 0; j < result[i].size(); ++j) {
-    //         cout << result[i][j] + 1 << " ";
-    //     }
-    //     cout << endl;
-    // }
+    for (int64_t i = 0; i < counter; ++i) {
+        sort(result[i].begin(), result[i].end());
+    }
+    sort(result.begin(), result.end());
+    for (int64_t i = 0; i < result.size(); ++i) {
+        for (int j = 0; j < result[i].size(); ++j) {
+            cout << result[i][j] + 1 << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
