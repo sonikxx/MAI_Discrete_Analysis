@@ -11,7 +11,7 @@ struct fch {
     int number_sorted;
 };
 
-void bwt_coder(const string &text, string &result) {
+void bwt_transformer(const string &text, string &result) {
     vector<int> shift;
     shift.reserve(text.size());
     for (int i = 0; i < text.size(); ++i) {
@@ -39,7 +39,7 @@ bool cmp(const fch &element1, const fch &element2) { // element1 < element2 ?
     return false;
 }
 
-void bwt_decoder(const string &text, string &result) {
+void bwt_undertransformer(const string &text, string &result) {
     vector<fch> left, tmp_right, right(text.size());
     left.reserve(text.size());
     tmp_right.reserve(text.size());
@@ -83,7 +83,7 @@ void bwt_decoder(const string &text, string &result) {
     result = tmp_string;
 }
 
-void mtf_coder(const string &text, vector<int> &result) {
+void mtf_transformer(const string &text, vector<int> &result) {
     vector<char> alphabet;
     alphabet.reserve(50);
     alphabet.push_back('$');
@@ -107,7 +107,7 @@ void mtf_coder(const string &text, vector<int> &result) {
     }
 }
 
-void mtf_decoder(const vector<int> &text, string &result) {
+void mtf_undertransformer(const vector<int> &text, string &result) {
     vector<char> alphabet;
     alphabet.reserve(50);
     alphabet.push_back('$');
@@ -152,7 +152,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    string type, text, result_btw, result_mtf_decoder, result;
+    string type, text, result_btw, result_mtf_undertransformer, result;
     vector<int> result_mtf, result_rle_decoder;
     vector<pair<int, int>> result_rle, input;
     cin >> type;
@@ -162,8 +162,8 @@ int main() {
         result_btw.reserve(text.size());
         result_mtf.reserve(text.size());
         result_rle.reserve(text.size());
-        bwt_coder(text, result_btw);
-        mtf_coder(result_btw, result_mtf);
+        bwt_transformer(text, result_btw);
+        mtf_transformer(result_btw, result_mtf);
         rle_coder(result_mtf, result_rle);
         for (int i = 0; i < result_rle.size(); ++i) {
             cout << result_rle[i].first << " " << result_rle[i].second << "\n";
@@ -175,11 +175,11 @@ int main() {
             input.push_back(make_pair(tmp1, tmp2));
         }
         result_rle_decoder.reserve(input.size());
-        result_mtf_decoder.reserve(input.size());
+        result_mtf_undertransformer.reserve(input.size());
         result.reserve(input.size());
         rle_decoder(input, result_rle_decoder);
-        mtf_decoder(result_rle_decoder, result_mtf_decoder);
-        bwt_decoder(result_mtf_decoder, result);
+        mtf_undertransformer(result_rle_decoder, result_mtf_undertransformer);
+        bwt_undertransformer(result_mtf_undertransformer, result);
         cout << result << "\n";
     }
     return 0;
