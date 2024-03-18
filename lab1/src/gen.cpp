@@ -6,7 +6,7 @@ using namespace std;
 
 string gen(size_t len) {
     string s;
-    string p = "0123456789abcdef";
+    string p = "0123456789abcde";
     for (size_t i = 0; i < len; i++) {
         s+=(p[random()%16]);
     }
